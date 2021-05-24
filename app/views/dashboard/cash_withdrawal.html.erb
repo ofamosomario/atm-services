@@ -1,0 +1,13 @@
+<div class='row'>
+  <div class="col-md-10">
+    <h3>Saques:</h3>
+  </div>
+  <%= simple_form_for current_user, url: url_for(action: :create_withdrawal, controller: :dashboard), method: :post do |f| %>
+    <div class="col-md-10">
+      <%= f.input :value, placeholder: 'Valor para o saque', label: false, as: :numeric %>
+    </div>
+    <div class="col-md-2">
+      <%= f.button :submit, 'Sacar', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

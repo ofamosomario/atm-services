@@ -1,0 +1,24 @@
+<div class='row'>
+  <div class="col-md-10">
+    <h3>Deposito:</h3>
+  </div>
+  <%= simple_form_for current_user, url: url_for(action: :create_fund_transfer, controller: :dashboard), method: :post do |f| %>
+    <div class="col-md-5">
+      <%= f.input :value, 
+        placeholder: 'Valor para o deposito',
+        label: false,
+        as: :numeric,
+        required: true %>
+    </div>
+    <div class="col-md-5">
+      <%= f.input :target_user,
+        collection: User.get_all_users_except_me(current_user.id),
+        prompt: false,
+        label_method: :full_name,
+        label: false %>
+    </div>
+    <div class="col-md-2">
+      <%= f.button :submit, 'Transferir', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,26 @@
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<div class='row'>
+  <div class="col-md-10">
+    <h3>Pesquisar por períodos:</h3>
+  </div>
+  <%= simple_form_for current_user, url: url_for(action: :financial_by_period, controller: :dashboard), method: :get do |f| %>
+    <div class="col-md-5">
+      <%= f.input :start_date, required: true, input_html: { class: 'start-date' }, label: false, placeholder: 'DD-MM-AAAA'  %>
+    </div>
+    <div class="col-md-5">
+      <%= f.input :end_date, required: true, input_html: { class: 'end-date' }, label: false, placeholder: 'DD-MM-AAAA'  %>
+    </div>
+    <div class="col-md-2">
+      <%= f.button :submit, 'Pesquisar', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
+
+<script>
+  $(function() {
+    $('.start-date').mask("99-99-9999");
+    $('.end-date').mask("99-99-9999");
+  });
+</script>

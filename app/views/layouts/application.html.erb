@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AtmRails</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+    <link rel="icon" type="image/png" href="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_local_atm_48px-256.png">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com"> 
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300&display=swap" rel="stylesheet">
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  
+    <div class="container vertical-center">
+        <div class="col-md-12">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+              <span class="glyphicon glyphicon-bookmark"></span> ATM MACHINE</h3>
+            </div>
+            <div class="panel-body">
+              <% if user_signed_in? %>
+                <div class="row">
+                  <div class="col-xs-8" style="margin-bottom:10px">
+                    <strong>Olá <%=current_user.full_name%>, seja bem vindo ao seu ATM.</strong>
+                  </div>
+                  <div class="col-xs-4">
+                    <div style="text-align:right">
+                      <strong><%= link_to 'Sair', destroy_user_session_path, :method => :delete %></strong> |
+                      <%= link_to 'Encerrar minha conta', cancel_account_path %>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="alert alert-success fund not-visible" role="alert">
+                      SALDO DISPONÍVEL: <%=current_user.balance%>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12">
+                    <a href="/" class="btn btn-default btn-lg" role="button"><span class="glyphicon glyphicon glyphicon-home"></span> <br/>Início</a>
+                    <a href="/deposit" class="btn btn-default btn-lg" role="button"><span class="glyphicon glyphicon glyphicon-upload"></span> <br/>Deposito</a>
+                    <a href="/cashWithdrawal" class="btn btn-default btn-lg" role="button"><span class="glyphicon glyphicon glyphicon-download"></span> <br/>Saques</a>
+                    <a href="/fundTransfer" class="btn btn-default btn-lg" role="button"><span class="glyphicon glyphicon glyphicon-retweet"></span> <br/>Transf.</a>
+                    <a href="javascript:showValue();" class="btn btn-default btn-lg" role="button"><span class="glyphicon glyphicon glyphicon-euro"></span> <br/>Saldo</a>
+                    <a href="/financialStatement" class="btn btn-default btn-lg" role="button"><span class="glyphicon glyphicon glyphicon-align-justify"></span> <br/>Extrato</a>
+                  </div>
+                </div>
+              <% end %>
+              <div class="row">
+                <div class="col-xs-12">
+                  <% if notice.present? %>
+                  <div class="alert alert-success" role="alert">
+                    <%= notice %>
+                  </div>
+                  <% end %>
+                  <%= yield %>
+                </div>
+                <hr />
+                <center>
+                  Created by Mário A.
+                </center>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <script>
+      function showValue(){
+        $('.fund').toggle('fast');
+        $('.fund').removeClass('not-visible');
+      }
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,12 @@
+# frozen_string_literal: true
+
+module FinancialConstants
+  START_COMERCIAL_TIME = '09:00:00'
+  END_COMERCIAL_TIME = '18:00:00'
+  REGULAR_TAX_FEE = 5
+  EXTRA_TAX_FEE = 7
+  MORE_THAN_THOUSAND = 1000
+  THOUSAND_FEE = 10
+  MINIMUM_BALANCE = 0
+  FEE_NONE = 0
+end
